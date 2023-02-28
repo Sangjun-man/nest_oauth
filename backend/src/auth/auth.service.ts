@@ -8,11 +8,15 @@ export class AuthService {
   async validateUser(userDetails: Omit<UserType, 'userId'>) {
     console.log('authService', userDetails);
     const { email } = userDetails;
-    const user = await this.userRepository.findOne(email);
+    const user = await this.userRepository.findOne({ email });
     console.log('finded user', user);
     if (user) return user;
 
     console.log('registrate new User');
     return await this.userRepository.insertOne(userDetails);
+  }
+
+  async findUser(userId: string) {
+    return await this.userRepository.findOne({ userId });
   }
 }

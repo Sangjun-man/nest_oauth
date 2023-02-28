@@ -9,8 +9,8 @@ import { User } from './schema/user.schema';
 export class UserRepository {
   constructor(@InjectModel(User.name) private userModel: Model<User>) {}
 
-  async findOne(email: string) {
-    const user = await this.userModel.findOne({ email });
+  async findOne(option: Partial<UserType>) {
+    const user = await this.userModel.findOne({ ...option });
     return user;
   }
 

@@ -1,11 +1,11 @@
-import { IsEmail, IsNumber, IsString, IsUrl, IsUUID } from 'class-validator';
+import { IsEmail, IsString, IsUrl, IsUUID } from 'class-validator';
 
-export interface UserType {
+export type UserType = {
   userId: string;
   displayName: string;
   email: string;
   image: string;
-}
+};
 
 export class UserDto {
   @IsString()
