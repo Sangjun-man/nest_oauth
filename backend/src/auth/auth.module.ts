@@ -7,7 +7,11 @@ import { SessionSerializer } from './utils/Serializer';
 
 @Module({
   imports: [UserModule],
-  providers: [AuthService, GoogleStrategy, SessionSerializer],
+  providers: [
+    { provide: 'AUTH_SERVICE', useClass: AuthService },
+    GoogleStrategy,
+    SessionSerializer,
+  ],
   controllers: [AuthController],
 })
 export class AuthModule {}
