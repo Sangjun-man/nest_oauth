@@ -1,4 +1,14 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Get, Req, UseGuards } from '@nestjs/common';
+import { JwtAuthGuard } from 'src/auth/guard/jwt-guard';
+import { UserService } from './user.service';
 
 @Controller('user')
-export class UserController {}
+export class UserController {
+  constructor(private readonly userService: UserService) {}
+
+  @Get('')
+  @UseGuards(JwtAuthGuard)
+  async userData(@Req() req) {
+    return await this.userService.findOne({ userId: req.user.userId });
+  }
+}

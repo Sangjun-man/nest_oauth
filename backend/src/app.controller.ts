@@ -16,12 +16,6 @@ export class AppController {
   @Get('status')
   @UseGuards(JwtAuthGuard)
   user(@Req() request: Request) {
-    console.log(request.user);
-
-    if (request.user) {
-      return { msg: 'Authenticated', data: request.user };
-    } else {
-      return { msg: 'notAuth' };
-    }
+    return { msg: 'Authenticated', data: request.user };
   }
 }

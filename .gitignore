@@ -2,6 +2,7 @@
 
 backend/.env
 frontend/.env
+frontend/.env.*
 
 # node_module
 backend/node_modules
@@ -10,5 +11,6 @@ frontend/node_modules
 # dist, build
 backend/dist
 frontend/build
+
 
 

@@ -1,10 +1,14 @@
 import { Injectable } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
 import { UserType } from 'src/user/dto/user.dto';
 import { UserRepository } from 'src/user/user.repository';
 
 @Injectable()
 export class AuthService {
-  constructor(private readonly userRepository: UserRepository) {}
+  constructor(
+    private readonly userRepository: UserRepository,
+    private readonly jwtService: JwtService,
+  ) {}
   async validateUser(userDetails: Omit<UserType, 'userId'>) {
     console.log('authService', userDetails);
     const { email } = userDetails;
@@ -18,5 +22,15 @@ export class AuthService {
 
   async findUser(userId: string) {
     return await this.userRepository.findOne({ userId });
+  }
+
+  jwtIssuance(user) {
+    const { userId, displayName } = user;
+
+    console.log('jwtIssuance', userId, displayName);
+    return this.jwtService.sign(
+      { userId, name: displayName },
+      { secret: process.env.JWT_SECRET_KEY },
+    );
   }
 }
