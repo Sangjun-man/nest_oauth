@@ -6,9 +6,9 @@ function Status() {
   useEffect(() => {
     const loadUser = async () => {
       try {
-        const user = await getUserData();
-        console.log(user);
-        // setUser(user);
+        const { data } = await getUserData();
+        console.log(data);
+        setUser(data.userId);
       } catch (err) {
         console.error(err);
       }

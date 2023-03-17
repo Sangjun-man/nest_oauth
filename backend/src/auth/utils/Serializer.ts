@@ -4,9 +4,7 @@ import { User } from 'src/user/schema/user.schema';
 import { AuthService } from '../auth.service';
 
 export class SessionSerializer extends PassportSerializer {
-  constructor(
-    @Inject('AUTH_SERVICE') private readonly authService: AuthService,
-  ) {
+  constructor(private readonly authService: AuthService) {
     super();
   }
 

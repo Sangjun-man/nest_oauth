@@ -14,6 +14,9 @@ export class User extends Document {
 
   @Prop(String)
   image: string;
+
+  @Prop(String)
+  refresh_token_iv: string;
 }
 
 export const userSchema = SchemaFactory.createForClass(User);

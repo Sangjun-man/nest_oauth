@@ -20,4 +20,7 @@ export class UserDto {
 
   @IsUrl()
   image: string;
+
+  @IsString()
+  refresh_token_iv: string;
 }
